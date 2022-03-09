@@ -25,6 +25,7 @@ typedef enum
     REG_R5,
     REG_R6,
     REG_R7,
+    REG_R8,
     REG_SP,
     REG_PC,
     REG_IVT,
