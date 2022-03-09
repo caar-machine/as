@@ -251,6 +251,15 @@ void codegen_call(AstCall call, Assembler *as, bool is_macro)
 
             return;
         }
+
+        else if (!strcmp(call.name, "fill"))
+        {
+            while (as->bytes.length < call.params.data[1].int_)
+            {
+                vec_push(&as->bytes, call.params.data[0].int_);
+            }
+            return;
+        }
         else if (!strcmp(call.name, "include"))
         {
             return;

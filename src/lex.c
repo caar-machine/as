@@ -40,11 +40,16 @@ bool is_digit(char c) { return isdigit(c) || isxdigit(c); }
 
 bool is_not_quote(char c) { return c != '"'; }
 
-Tokens lex(char *s)
+Tokens lex(char *str)
 {
     Tokens ret = {};
 
+    char *s = str;
+
     vec_init(&ret);
+
+    int line = 0;
+    int col = 0;
 
     while (*s)
     {
@@ -56,6 +61,11 @@ Tokens lex(char *s)
             TOKEN('[', TOKEN_LBRACKET);
             TOKEN(')', TOKEN_RPAREN);
             TOKEN(']', TOKEN_RBRACKET);
+
+        case '\n':
+            line++;
+            col = 0;
+            break;
 
         case '"':
         {
@@ -177,11 +187,12 @@ Tokens lex(char *s)
                     break;
 
                 default:
-                    error("Unknown register: %c\n", *s);
+                    error("Unknown register: %c at %d:%d", *s, line, col);
                     exit(-1);
                     break;
                 }
 
+                curr.col = col++;
                 vec_push(&ret, curr);
             }
 

@@ -7,6 +7,9 @@ AstNode parse_token(int *index, Ast *ast, char *include_dir, Tokens tokens)
 {
     AstNode node = {0};
 
+    node.line = tokens.data[*index].line;
+    node.col = tokens.data[*index].col;
+
     switch (tokens.data[*index].type)
     {
 
@@ -16,7 +19,7 @@ AstNode parse_token(int *index, Ast *ast, char *include_dir, Tokens tokens)
 
         if (*index + 1 > tokens.length || tokens.data[*index + 1].type != TOKEN_SYMBOL)
         {
-            error("expected symbol in instruction");
+            error("expected symbol in instruction at %d:%d", node.line, node.col);
             exit(-1);
         }
 
@@ -44,7 +47,7 @@ AstNode parse_token(int *index, Ast *ast, char *include_dir, Tokens tokens)
 
                 if (!fp)
                 {
-                    error("could not open file: %s", tokens.data[*index]._string);
+                    error("could not open file: %s at %d:%d", tokens.data[*index]._string, node.line, node.col);
                     exit(-1);
                 }
             }

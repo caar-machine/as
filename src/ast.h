@@ -60,6 +60,9 @@ typedef struct AstNode
         AstMacro macro;
     };
 
+    int line;
+    int col;
+
 } AstNode;
 
 Ast parse(Tokens tokens, char *include_dir);
