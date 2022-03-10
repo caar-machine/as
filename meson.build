@@ -20,4 +20,4 @@ input_files = [
 'src/lib/vec.c',
 ]
 
-executable('caar-as', sources: input_files, include_directories: inc)
+assembler_executable = executable('caar-as', sources: input_files, include_directories: inc)
