@@ -20,4 +20,11 @@ input_files = [
 'src/lib/vec.c',
 ]
 
-assembler_executable = executable('caar-as', sources: input_files, include_directories: inc)
+install_dir = join_paths(meson.current_source_dir(), 'bin')
+
+if meson.is_subproject()
+  install_dir = join_paths(meson.current_source_dir(), '../../bin')
+endif
+
+
+assembler_executable = executable('caar-as', sources: input_files, install: true, install_dir: install_dir, include_directories: inc)
