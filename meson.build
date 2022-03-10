@@ -1,3 +1,5 @@
+project('caar-as', 'c')
+
 inc = include_directories('src')
 
 input_files = [
