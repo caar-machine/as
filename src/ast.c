@@ -23,7 +23,7 @@ AstNode parse_token(int *index, Ast *ast, char *include_dir, Tokens tokens)
             exit(-1);
         }
 
-        node.call.name = tokens.data[++*index]._symbol;
+        node.call.name = strdup(tokens.data[++*index]._symbol);
 
         if (!strcmp(node.call.name, "include"))
         {

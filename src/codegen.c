@@ -46,7 +46,9 @@
     map_set(what, "ldw", 0x1A);  \
     map_set(what, "int", 0x1B);  \
     map_set(what, "call", 0x1C); \
-    map_set(what, "mov", 0x1D);
+    map_set(what, "mov", 0x1D);  \
+    map_set(what, "lsh", 0x1E);  \
+    map_set(what, "rsh", 0x1F);
 
 char *str_to_lower(char *str)
 {
